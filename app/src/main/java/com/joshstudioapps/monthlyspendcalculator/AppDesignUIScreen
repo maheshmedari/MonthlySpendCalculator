@@ -1,0 +1,240 @@
+To help you with UI analysis and design visuals for your Daily, Monthly, and Yearly Expenditure Tracking App, I’ll break down the project into individual screens based on your earlier request, explain each screen’s purpose, the UI components it should have, and then generate an image for each screen.
+
+🔧 Project Scope Summary
+Login / Register with RoomDB
+
+Set Monthly Budget
+
+Add/Delete Expense
+
+Track Daily, Monthly, Yearly Expenses
+
+Display Charts or Lists
+
+Store in Room (future: Firebase/server)
+
+🧩 Screen-by-Screen UI Design & Analysis
+1. Splash Screen
+Purpose: Show logo briefly on app launch
+
+UI Elements:
+
+App logo (centered)
+
+App name
+
+Progress indicator or animation
+
+🔧 Visual Style: Minimal, clean
+
+2. Login / Register Screen
+Purpose: Authenticate user with Room DB
+
+UI Elements:
+
+Username input (TextField)
+
+Password input (TextField with hide/show toggle)
+
+"Login" button
+
+"Register" button or link
+
+Error message or toast if failed
+
+🔧 Visual Style: Card with inputs, bright button color (blue/green)
+
+3. Home Dashboard Screen
+Purpose: Show summary of total expenditure
+
+UI Elements:
+
+Greeting with user’s name
+
+Cards showing:
+
+Today’s Expense
+
+This Month’s Expense
+
+This Year’s Expense
+
+Buttons:
+
+Add Expense
+
+Set Monthly Budget
+
+View Reports
+
+🔧 Visual Style: Dashboard tiles, modern, data-first look
+
+4. Add Expense Screen
+Purpose: Enter a new expense record
+
+UI Elements:
+
+Date picker (default today)
+
+Amount (NumberField)
+
+Category dropdown (Food, Travel, etc.)
+
+Description (optional)
+
+"Save" button
+
+🔧 Visual Style: Clean form with input validation
+
+5. Monthly Budget Screen
+Purpose: Set limits per category
+
+UI Elements:
+
+List of categories
+
+Input budget per category
+
+Save button
+
+Optionally: total monthly budget
+
+🔧 Visual Style: Editable list with Save floating action button
+
+6. Expense List Screen
+Purpose: Show list of expenses by filter (Day/Month/Year)
+
+UI Elements:
+
+Filter chips (Daily / Monthly / Yearly)
+
+List of expense items (date, amount, category, note)
+
+Delete/Edit swipe actions
+
+🔧 Visual Style: RecyclerView/ListView with icons
+
+7. Reports/Graph Screen
+Purpose: Visual representation of data
+
+UI Elements:
+
+Pie chart or bar graph
+
+Filter dropdown (week, month, year)
+
+Top 5 spending categories
+
+Comparison with budget
+
+🔧 Visual Style: Bright charts, easy to read
+
+8. Profile/Settings Screen
+Purpose: Manage user data
+
+UI Elements:
+
+Username/email
+
+Change password
+
+Reset data
+
+Logout button
+
+🔧 Visual Style: Profile card with basic settings
+
+✅ Ready to Generate Images
+I'll now create visual mockups of the following screens:
+
+Splash Screen
+
+Login / Register
+
+Dashboard (Home)
+
+Add Expense
+
+Monthly Budget
+
+Expense List
+
+Reports
+
+Profile
+
+Let me start generating the UI image mockups.
+
+
+ICONS:-
+
+🟢 General Naming Convention
+Use lowercase + underscores, e.g.:
+
+pgsql
+Copy
+Edit
+ic_login.xml
+ic_food.png
+📱 Splash / Login / Register Screen
+Usage	Icon Name	Purpose
+App Logo	ic_wallet_logo	Brand logo (main symbol)
+Email Field	ic_email	Input hint icon
+Password Field	ic_password	Input hint icon
+Login Button	ic_login	Optional icon for button
+Register Btn	ic_register	Optional icon for button
+Show Password	ic_visibility	Toggle password visibility
+Hide Password	ic_visibility_off	Toggle off
+
+🏠 Dashboard (Home Screen)
+Usage	Icon Name	Purpose
+Daily Expense	ic_today	Show today's expense
+Monthly Expense	ic_calendar_month	Monthly data summary
+Yearly Expense	ic_calendar_year	Annual expense summary
+Pie Chart	ic_pie_chart	Visual analytics
+Add Expense	ic_add	FAB or toolbar icon
+Reports	ic_bar_chart	Open report/chart view
+Settings/Profile	ic_settings	Navigate to settings/profile
+
+➕ Add Expense Screen
+Usage	Icon Name	Purpose
+Select Category	ic_category	Dropdown icon (optional)
+Select Date	ic_calendar	Open date picker
+Amount Field	ic_money	Input hint
+Save Button	ic_save	Save new expense
+
+💸 Expense Categories (Icons)
+Category	Icon Name
+Food	ic_food
+Shopping	ic_shopping
+Transport	ic_transport
+Entertainment	ic_entertainment
+Health/Medical	ic_health
+Education	ic_education
+Bills/Utilities	ic_bills
+Travel	ic_travel
+Others/Misc	ic_others
+
+📊 Reports / Charts Screen
+Usage	Icon Name
+Bar Chart	ic_bar_chart
+Pie Chart	ic_pie_chart
+Filter	ic_filter_list
+Back	ic_arrow_back
+
+👤 Profile / Settings Screen
+Usage	Icon Name
+User Avatar	ic_user
+Change Pass	ic_lock
+Reset Data	ic_refresh
+Logout	ic_logout
+Language	ic_language
+Theme Mode	ic_dark_mode or ic_light_mode
+
+🗑️ List / Manage Expenses Screen
+Usage	Icon Name
+Edit Item	ic_edit
+Delete Item	ic_delete
+Swipe Left Icon	ic_swipe_delete
+Swipe Right Icon	ic_swipe_edit
+

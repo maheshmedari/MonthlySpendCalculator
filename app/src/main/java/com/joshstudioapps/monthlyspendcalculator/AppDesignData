@@ -1,0 +1,146 @@
+Here's a complete app structure and MVVM architecture
+plan for your Daily, Monthly & Yearly Expenditure App in Android Kotlin using RoomDB and MVVM:
+
+ App Structure Overview
+🎯 Core Features:
+1.User Registration/Login (RoomDB)
+2.Set Monthly Budget per Category
+3.Add/Delete Expense Records
+4.Track Daily, Monthly, Yearly Usage
+5.Calculate Totals Based on Records
+6.Data Persistence via RoomDB (migratable to Firebase later)
+
+Screens (UI Pages) : --
+Screen -- Name	Purpose
+SplashScreen --	Initial loading and redirect to Login/Register
+LoginScreen --	Login with RoomDB-stored credentials
+RegisterScreen --	Register a new user and save in RoomDB
+HomeScreen --	Overview of current day/month/year expenses
+SetMonthlyBudgetScreen --	Set monthly limit per category
+AddExpenseScreen --	Add new expense with amount, category, description
+ExpenseListScreen --	List of all expenses (daily/monthly/yearly filter)
+ExpenseDetailScreen --	View details of a specific expense
+SettingsScreen --	Future option: export, sync, or clear data
+
+MVVM Architecture Design
+📦 com.expenditureapp
+│
+├── data
+│   ├── database
+│   │   ├── AppDatabase.kt         // RoomDB setup
+│   │   ├── dao
+│   │   │   ├── UserDao.kt
+│   │   │   └── ExpenseDao.kt
+│   │   └── entities
+│   │       ├── UserEntity.kt
+│   │       └── ExpenseEntity.kt
+│   └── repository
+│       ├── UserRepository.kt
+│       └── ExpenseRepository.kt
+│
+├── domain
+│   └── models
+│       ├── User.kt
+│       └── Expense.kt
+│
+├── ui
+│   ├── login
+│   │   ├── LoginViewModel.kt
+│   │   └── LoginScreen.kt
+│   ├── register
+│   │   ├── RegisterViewModel.kt
+│   │   └── RegisterScreen.kt
+│   ├── home
+│   │   ├── HomeViewModel.kt
+│   │   └── HomeScreen.kt
+│   ├── budget
+│   │   ├── BudgetViewModel.kt
+│   │   └── SetMonthlyBudgetScreen.kt
+│   ├── expenses
+│   │   ├── AddExpenseViewModel.kt
+│   │   ├── ExpenseListViewModel.kt
+│   │   ├── AddExpenseScreen.kt
+│   │   └── ExpenseListScreen.kt
+│   └── common
+│       └── components (reusable UI elements)
+│
+└── utils
+    └── DateUtils.kt, Constants.kt, Extensions.kt
+
+
+ Database Models (Entities)
+
+UserEntity.kt
+ @Entity(tableName = "users")
+ data class UserEntity(
+     @PrimaryKey(autoGenerate = true) val id: Int = 0,
+     val username: String,
+     val password: String
+ )
+
+ExpenseEntity.kt
+@Entity(tableName = "expenses")
+data class ExpenseEntity(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val userId: Int,
+    val amount: Double,
+    val category: String,
+    val description: String,
+    val date: Long // timestamp for filtering by day/month/year
+)
+
+
+ ViewModel Responsibilities
+ViewModel --	Responsibilities
+LoginViewModel --	Handle user login logic
+RegisterViewModel --	Validate and save new user
+HomeViewModel --	Calculate and display total spendings
+BudgetViewModel --	Set and get monthly budget
+AddExpenseViewModel --	Validate and insert new expense
+ExpenseListViewModel --	List, delete, and filter expenses
+
+📚 Repository Layer
+Acts as an abstraction between ViewModel and DAO.
+Helps if you later replace Room with Firebase.
+class ExpenseRepository(private val expenseDao: ExpenseDao) {
+    suspend fun addExpense(expense: ExpenseEntity) = expenseDao.insertExpense(expense)
+    suspend fun deleteExpense(id: Int) = expenseDao.deleteExpenseById(id)
+    suspend fun getExpensesByDateRange(start: Long, end: Long): List<ExpenseEntity> =
+        expenseDao.getExpensesBetweenDates(start, end)
+}
+
+
+💾 DAO Examples
+ExpenseDao.kt
+@Dao
+interface ExpenseDao {
+    @Insert
+    suspend fun insertExpense(expense: ExpenseEntity)
+
+    @Query("DELETE FROM expenses WHERE id = :id")
+    suspend fun deleteExpenseById(id: Int)
+
+    @Query("SELECT * FROM expenses WHERE date BETWEEN :start AND :end")
+    suspend fun getExpensesBetweenDates(start: Long, end: Long): List<ExpenseEntity>
+}
+
+
+
+🗓️ Calculating Daily, Monthly, Yearly Expenses
+Use startOfDay, endOfDay, startOfMonth, endOfMonth, startOfYear, endOfYear calculated via Calendar or DateUtils.
+
+🔄 Later Migration to Firebase
+Replace Room calls in Repository with Firebase SDK calls.
+
+Structure Firestore documents as: users -> {userId} -> expenses -> {expenseId}
+
+🧪 Future Enhancements
+Export to CSV
+
+Graphical summary with MPAndroidChart
+
+Dark Mode
+
+Firebase sync
+
+Would you like me to now help you start building this step-by-step, starting from login/registration with RoomDB and MVVM?
