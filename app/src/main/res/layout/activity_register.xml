@@ -1,10 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Views.RegisterActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp" />
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/textViewTitle"
+            android:layout_marginTop="40dp"
+            android:hint="Full Name"
+            android:drawableStart="@drawable/outline_person_add_alt_1_24"
+            android:drawablePadding="10dp"
+            android:paddingStart="12dp"
+            android:background="@drawable/edit_text_background" />
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/editTextName"
+            android:layout_marginTop="20dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:drawableStart="@drawable/outline_email_24"
+            android:drawablePadding="10dp"
+            android:paddingStart="12dp"
+            android:background="@drawable/edit_text_background" />
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/editTextEmail"
+            android:layout_marginTop="20dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:drawableStart="@drawable/outline_email_24"
+            android:drawableEnd="@drawable/outline_person_add_alt_1_24"
+            android:drawablePadding="10dp"
+            android:paddingStart="12dp"
+            android:background="@drawable/edit_text_background" />
+
+        <EditText
+            android:id="@+id/editTextConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/editTextPassword"
+            android:layout_marginTop="20dp"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:drawableStart="@drawable/outline_email_24"
+            android:drawableEnd="@drawable/outline_person_add_alt_1_24"
+            android:drawablePadding="10dp"
+            android:paddingStart="12dp"
+            android:background="@drawable/edit_text_background" />
+
+        <Button
+            android:id="@+id/buttonRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textSize="24sp"
+            android:layout_below="@id/editTextConfirmPassword"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="#00DFFF"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/getAllUsers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="UserList"
+            android:textSize="24sp"
+            android:layout_below="@id/buttonRegister"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="#00DFFF"
+            android:textColor="#FFFFFF" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,27 +1,54 @@
 package com.joshstudioapps.monthlyspendcalculator.ViewModel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.joshstudioapps.monthlyspendcalculator.Model.User
+import com.joshstudioapps.monthlyspendcalculator.Model.UserDatabase
+import com.joshstudioapps.monthlyspendcalculator.Repository.UserRepository
+import com.joshstudioapps.monthlyspendcalculator.utils.Validator
+import kotlinx.coroutines.launch
 
-class LoginViewModel: ViewModel() {
+//class LoginViewModel: ViewModel() {
+//
+//    // MutableLiveData — internal value that ViewModel can change
+//    private val _loginResult = MutableLiveData<Boolean>()
+//
+//    // LiveData — read-only version exposed to the View (Activity)
+//    val loginResult: LiveData<Boolean> get() = _loginResult
+//
+//    fun login(email: String, password: String) {
+//        // Hardcoded dummy check (replace with repository or Firebase)
+//        val validUser = User("test@example.com", "123456")
+//
+//        // Set the result to true if login matches
+//        _loginResult.value = (email == validUser.email && password == validUser.password)
+//    }
+//
+//}
 
-    // MutableLiveData — internal value that ViewModel can change
-    private val _loginResult = MutableLiveData<Boolean>()
+class LoginViewModel(application: Application) : AndroidViewModel(application) {
+    private val userDao = UserDatabase.getDatabase(application).userDao()
+    private val repository = UserRepository(userDao)
 
-    // LiveData — read-only version exposed to the View (Activity)
-    val loginResult: LiveData<Boolean> get() = _loginResult
+    val loginResult = MutableLiveData<String>()
 
     fun login(email: String, password: String) {
-        // Hardcoded dummy check (replace with repository or Firebase)
-        val validUser = User("test@example.com", "123456")
+        if (!Validator.isValidEmail(email)) {
+            loginResult.value = "Invalid Email"
+            return
+        }
 
-        // Set the result to true if login matches
-        _loginResult.value = (email == validUser.email && password == validUser.password)
+        viewModelScope.launch {
+            val user = repository.login(email, password)
+            loginResult.postValue(if (user != null) "Success" else "Invalid credentials")
+        }
     }
-
 }
+
 
 /*
 🔍 MVVM Recap (Model-View-ViewModel)

@@ -36,13 +36,13 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
 
         // Observe login result
-        viewModel.loginResult.observe(this) { success ->
-            if (success) {
+        viewModel.loginResult.observe(this) { result ->
+            if (result == "Success") {
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             } else {
-                Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, result, Toast.LENGTH_SHORT).show()
             }
         }
 
